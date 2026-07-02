@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jehan Chaiz P. Levita — Software Engineer</title>
+<meta name="description" content="Portfolio of Jehan Chaiz P. Levita — full-stack software engineer based in Manila." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#140E24;
+    --ink-2:#191030;
+    --plum:#241640;
+    --plum-soft:#2D1B45;
+    --lavender:#CDB4FF;
+    --lilac:#B8A1FF;
+    --orchid:#A855F7;
+    --pink:#F9A8D4;
+    --rose:#EC4899;
+    --text:#EDE7FB;
+    --muted:#B7ADD6;
+    --faint:#8B80AE;
+    --glass:rgba(205,180,255,.05);
+    --glass-2:rgba(205,180,255,.08);
+    --border:rgba(184,161,255,.16);
+    --border-2:rgba(184,161,255,.28);
+    --radius:22px;
+    --radius-lg:28px;
+    --shadow:0 24px 60px -24px rgba(10,4,25,.9);
+    --glow-pink:rgba(236,72,153,.4);
+    --glow-purple:rgba(168,85,247,.4);
+    --maxw:1140px;
+    --serif:"Space Grotesk",system-ui,sans-serif;
+    --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--sans);
+    background:var(--ink);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+
+  /* ---------- Ambient background ---------- */
+  .bg-wrap{position:fixed;inset:0;z-index:-2;overflow:hidden;background:
+    radial-gradient(1200px 700px at 15% -5%, rgba(168,85,247,.20), transparent 60%),
+    radial-gradient(900px 600px at 95% 8%, rgba(236,72,153,.14), transparent 55%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(184,161,255,.12), transparent 60%),
+    linear-gradient(180deg,var(--ink),var(--ink-2) 40%,var(--ink));
+  }
+  .aurora{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;mix-blend-mode:screen;will-change:transform}
+  .aurora.a1{width:520px;height:520px;top:-120px;left:-80px;background:radial-gradient(circle,var(--orchid),transparent 65%);animation:drift1 26s ease-in-out infinite}
+  .aurora.a2{width:460px;height:460px;top:20%;right:-120px;background:radial-gradient(circle,var(--rose),transparent 65%);animation:drift2 32s ease-in-out infinite}
+  .aurora.a3{width:600px;height:600px;bottom:-160px;left:30%;background:radial-gradient(circle,var(--lilac),transparent 65%);animation:drift3 30s ease-in-out infinite}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(120px,80px) scale(1.15)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-100px,120px) scale(1.1)}}
+  @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,-90px) scale(1.2)}}
+  .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* Sparkles */
+  .sparkle{position:absolute;background:#fff;border-radius:50%;opacity:0;box-shadow:0 0 8px 1px rgba(249,168,212,.8);animation:twinkle var(--dur,4s) ease-in-out infinite;animation-delay:var(--delay,0s)}
+  @keyframes twinkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.9;transform:scale(1)}}
+
+  /* Cursor glow */
+  #cursor-glow{position:fixed;top:0;left:0;width:460px;height:460px;border-radius:50%;pointer-events:none;z-index:0;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(236,72,153,.14),rgba(168,85,247,.10) 40%,transparent 70%);
+    transition:opacity .3s;opacity:0;will-change:transform}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+  section{padding:120px 0;position:relative}
+  .eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lavender);display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--orchid))}
+  h2.section-title{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:18px}
+  .section-lead{color:var(--muted);max-width:620px;font-size:1.06rem;margin-bottom:56px}
+  .grad-text{background:linear-gradient(105deg,var(--lavender) 0%,var(--pink) 45%,var(--orchid) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+  /* ---------- Nav ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:all .35s}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+  header.nav.scrolled .nav-inner{padding:12px 24px}
+  header.nav.scrolled{background:rgba(20,14,36,.7);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;letter-spacing:.02em;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--orchid));box-shadow:0 0 14px var(--glow-pink)}
+  .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;transition:color .25s;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:linear-gradient(90deg,var(--pink),var(--orchid));transition:width .3s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{padding:10px 20px;border-radius:999px;background:linear-gradient(135deg,rgba(249,168,212,.16),rgba(168,85,247,.16));border:1px solid var(--border-2);color:var(--text);font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s}
+  .nav-cta:hover{box-shadow:0 0 22px var(--glow-purple);border-color:var(--orchid)}
+  .menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:12px;padding:9px;cursor:pointer}
+  .menu-btn span{display:block;width:20px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;transition:.3s}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:120px;padding-bottom:80px}
+  .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:var(--glass);border:1px solid var(--border);font-size:.82rem;color:var(--lavender);margin-bottom:30px;backdrop-filter:blur(10px)}
+  .hero-badge .pulse{width:8px;height:8px;border-radius:50%;background:#7CE7A6;box-shadow:0 0 10px #7CE7A6;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.8rem,8vw,6rem);line-height:.98;letter-spacing:-.03em;margin-bottom:8px}
+  .hero .role{font-family:var(--serif);font-weight:500;font-size:clamp(1.3rem,3.4vw,2rem);color:var(--muted);letter-spacing:-.01em;margin-bottom:28px}
+  .hero .role .sep{color:var(--orchid);margin:0 12px}
+  .hero p.intro{font-size:clamp(1.02rem,2vw,1.2rem);color:var(--muted);max-width:600px;margin-bottom:40px}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;font-family:var(--sans);font-weight:600;font-size:.98rem;text-decoration:none;cursor:pointer;border:none;transition:transform .2s,box-shadow .3s;will-change:transform}
+  .btn-primary{background:linear-gradient(135deg,var(--pink),var(--orchid));color:#fff;box-shadow:0 12px 34px -10px var(--glow-purple)}
+  .btn-primary:hover{box-shadow:0 16px 44px -8px var(--glow-pink),0 0 30px var(--glow-purple)}
+  .btn-ghost{background:var(--glass-2);color:var(--text);border:1px solid var(--border-2);backdrop-filter:blur(10px)}
+  .btn-ghost:hover{border-color:var(--orchid);box-shadow:0 0 24px var(--glow-purple)}
+  .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--faint);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-family:var(--mono)}
+  .scroll-hint .mouse{width:22px;height:36px;border:1.5px solid var(--border-2);border-radius:12px;position:relative}
+  .scroll-hint .mouse::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:4px;height:7px;border-radius:2px;background:var(--lavender);animation:scrolldot 1.8s infinite}
+  @keyframes scrolldot{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.08s}
+  .reveal[data-d="2"]{transition-delay:.16s}
+  .reveal[data-d="3"]{transition-delay:.24s}
+  .reveal[data-d="4"]{transition-delay:.32s}
+
+  /* ---------- Glass card ---------- */
+  .glass{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(16px);position:relative;overflow:hidden}
+  .glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(249,168,212,.35),transparent 40%,transparent 60%,rgba(168,85,247,.3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.7;pointer-events:none}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:56px;align-items:start}
+  .about-copy p{color:var(--muted);font-size:1.1rem;margin-bottom:22px}
+  .about-copy strong{color:var(--text);font-weight:600}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stat{padding:26px 22px;border-radius:var(--radius)}
+  .stat .num{font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1;margin-bottom:8px}
+  .stat .lbl{color:var(--faint);font-size:.86rem}
+
+  /* ---------- Skills ---------- */
+  .lang-strip{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
+  .lang-chip{font-family:var(--mono);font-size:.85rem;padding:9px 16px;border-radius:999px;background:var(--glass-2);border:1px solid var(--border);color:var(--lavender)}
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .skill-card{padding:30px 26px;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+  .skill-card:hover{box-shadow:0 24px 60px -30px var(--glow-purple)}
+  .skill-ico{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(249,168,212,.18),rgba(168,85,247,.18));border:1px solid var(--border-2);margin-bottom:20px;color:var(--lavender)}
+  .skill-card h3{font-family:var(--serif);font-weight:600;font-size:1.18rem;margin-bottom:14px}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-tags span{font-size:.8rem;padding:6px 11px;border-radius:8px;background:rgba(205,180,255,.06);border:1px solid var(--border);color:var(--muted)}
+  .skill-card .placeholder{font-size:.82rem;color:var(--faint);font-style:italic}
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--pink),var(--orchid),transparent)}
+  .tl-item{position:relative;margin-bottom:44px}
+  .tl-item:last-child{margin-bottom:0}
+  .tl-node{position:absolute;left:-34px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--ink);border:2px solid var(--orchid);box-shadow:0 0 0 4px rgba(168,85,247,.12)}
+  .tl-node::after{content:"";position:absolute;inset:3px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--orchid))}
+  .tl-card{padding:28px 30px}
+  .tl-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:6px}
+  .tl-role{font-family:var(--serif);font-weight:600;font-size:1.28rem}
+  .tl-date{font-family:var(--mono);font-size:.82rem;color:var(--lavender);white-space:nowrap}
+  .tl-org{color:var(--orchid);font-weight:600;font-size:.98rem;margin-bottom:16px}
+  .tl-card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .tl-card li{color:var(--muted);font-size:.98rem;padding-left:22px;position:relative}
+  .tl-card li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--orchid))}
+  .rounds{display:grid;gap:12px;margin-top:18px}
+  .round{padding:16px 18px;border-radius:16px;background:rgba(205,180,255,.045);border:1px solid var(--border)}
+  .round h4{font-family:var(--serif);font-weight:600;font-size:1rem;margin-bottom:6px;color:var(--text)}
+  .round p{color:var(--muted);font-size:.92rem;margin-bottom:10px}
+  .round .stack{font-family:var(--mono);font-size:.76rem;color:var(--faint);line-height:1.7}
+
+  /* ---------- Projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .proj-card{display:flex;flex-direction:column;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+  .proj-card:hover{box-shadow:0 30px 70px -34px var(--glow-purple)}
+  .proj-mock{height:190px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+  .proj-mock .win{position:absolute;inset:22px 22px 0;border-radius:14px 14px 0 0;background:rgba(20,14,36,.5);border:1px solid var(--border-2);border-bottom:none;backdrop-filter:blur(6px)}
+  .proj-mock .bar{display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid var(--border)}
+  .proj-mock .bar i{width:9px;height:9px;border-radius:50%;background:var(--faint);opacity:.6}
+  .proj-mock .screen{padding:18px 16px}
+  .proj-mock .screen .line{height:8px;border-radius:4px;background:rgba(205,180,255,.18);margin-bottom:9px}
+  .proj-mock .screen .line.s{width:45%}
+  .proj-mock .screen .line.m{width:70%}
+  .proj-mock .glow-name{position:absolute;bottom:16px;right:18px;font-family:var(--serif);font-weight:700;font-size:1.05rem;color:rgba(255,255,255,.9);text-shadow:0 2px 20px rgba(236,72,153,.5)}
+  .proj-body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+  .proj-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+  .proj-body h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin-bottom:12px}
+  .proj-body .desc{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+  .proj-meta{margin-bottom:16px}
+  .proj-meta .row{font-size:.88rem;color:var(--muted);margin-bottom:8px;display:flex;gap:8px}
+  .proj-meta .row b{color:var(--lavender);font-weight:600;white-space:nowrap}
+  .proj-stack{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+  .proj-stack span{font-size:.74rem;font-family:var(--mono);padding:5px 10px;border-radius:7px;background:rgba(168,85,247,.1);border:1px solid var(--border);color:var(--lilac)}
+  .proj-links{display:flex;gap:12px;margin-top:auto}
+  .proj-link{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:600;text-decoration:none;color:var(--text);padding:9px 16px;border-radius:999px;border:1px solid var(--border-2);transition:.3s}
+  .proj-link:hover{border-color:var(--orchid);box-shadow:0 0 18px var(--glow-purple)}
+  .proj-link.disabled{color:var(--faint);border-style:dashed;pointer-events:none;opacity:.7}
+
+  /* ---------- Education & Certs ---------- */
+  .edu-cert{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:start}
+  .edu-card{padding:34px}
+  .edu-card .degree{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:6px}
+  .edu-card .school{color:var(--orchid);font-weight:600;margin-bottom:4px}
+  .edu-card .sub{color:var(--faint);font-size:.9rem;margin-bottom:20px}
+  .honor{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;background:linear-gradient(135deg,rgba(249,168,212,.16),rgba(168,85,247,.16));border:1px solid var(--border-2);font-weight:600;margin-bottom:24px}
+  .honor .star{color:var(--pink)}
+  .course-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .courses{display:flex;flex-wrap:wrap;gap:8px}
+  .courses span{font-size:.8rem;padding:6px 12px;border-radius:8px;background:rgba(205,180,255,.05);border:1px solid var(--border);color:var(--muted)}
+  .cert-col{display:flex;flex-direction:column;gap:20px}
+  .cert-card{padding:26px}
+  .cert-card .ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(249,168,212,.18),rgba(168,85,247,.18));border:1px solid var(--border-2);color:var(--lavender);margin-bottom:16px}
+  .cert-card h4{font-family:var(--serif);font-weight:600;font-size:1.08rem;margin-bottom:6px}
+  .cert-card p{color:var(--muted);font-size:.88rem}
+  .cert-card.ph{border-style:dashed}
+  .cert-card.ph h4,.cert-card.ph p{color:var(--faint)}
+
+  /* ---------- Contact ---------- */
+  .contact{text-align:center}
+  .contact .section-lead{margin-left:auto;margin-right:auto}
+  .contact-card{padding:60px 40px;text-align:center;max-width:760px;margin:0 auto}
+  .contact-card h2{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.02em;margin-bottom:18px;line-height:1.02}
+  .contact-card p{color:var(--muted);font-size:1.1rem;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+  .contact-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .contact-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .contact-links a{color:var(--muted);text-decoration:none;font-size:.92rem;display:inline-flex;align-items:center;gap:8px;transition:color .25s}
+  .contact-links a:hover{color:var(--lavender)}
+
+  footer{text-align:center;padding:50px 24px;border-top:1px solid var(--border);color:var(--faint);font-size:.86rem}
+  footer .grad-text{font-family:var(--serif);font-weight:600}
+
+  .divider{height:1px;max-width:var(--maxw);margin:0 auto;background:linear-gradient(90deg,transparent,var(--border-2),transparent)}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    .about-grid,.proj-grid,.edu-cert{grid-template-columns:1fr}
+    .skills-grid{grid-template-columns:1fr 1fr}
+    section{padding:90px 0}
+    .nav-links{position:fixed;top:0;right:0;bottom:0;width:min(78vw,320px);flex-direction:column;align-items:flex-start;justify-content:center;gap:28px;padding:40px;background:rgba(20,14,36,.94);backdrop-filter:blur(20px);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .nav-links.open{transform:none}
+    .nav-links a{font-size:1.2rem}
+    .menu-btn{display:block;z-index:60}
+    .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .menu-btn.open span:nth-child(2){opacity:0}
+    .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  }
+  @media(max-width:560px){
+    .skills-grid,.stats{grid-template-columns:1fr}
+    .wrap{padding:0 18px}
+    .contact-card{padding:40px 24px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+    #cursor-glow{display:none}
+  }
+
+  :focus-visible{outline:2px solid var(--lavender);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="aurora a3"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand"><span class="dot"></span>Jehan Levita</a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="navlinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-badge reveal"><span class="pulse"></span>Open to software engineering roles · Manila, PH</div>
+      <h1 class="reveal" data-d="1"><span class="grad-text">Jehan Chaiz</span><br/>P. Levita</h1>
+      <div class="role reveal" data-d="2">Software Engineer<span class="sep">/</span>Full-Stack Developer</div>
+      <p class="intro reveal" data-d="3">I build full-stack products with care for both the architecture underneath and the interface on top — from cloud infrastructure and serverless APIs to interfaces people genuinely enjoy using.</p>
+      <div class="hero-actions reveal" data-d="4">
+        <a href="Levita_Jehan_CV_July2026.pdf" class="btn btn-primary magnetic" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download resume
+        </a>
+        <a href="#contact" class="btn btn-ghost magnetic">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Let's talk
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span class="mouse"></span>Scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow reveal">About me</div>
+      <h2 class="section-title reveal" data-d="1">Curious by default,<br/><span class="grad-text">full-stack by practice.</span></h2>
+      <div class="about-grid">
+        <div class="about-copy reveal" data-d="2">
+          <p>I'm Jehan — a Computer Science student at <strong>Pamantasan ng Lungsod ng Maynila</strong>, graduating <strong>Magna Cum Laude</strong> in 2026. I like the whole stack: standing up cloud infrastructure, wiring serverless APIs, then obsessing over the details of the interface people actually touch.</p>
+          <p>Most recently I completed <strong>White Cloak's Launchpad Program</strong>, shipping three full-stack applications across three consecutive rounds — a telehealth MVP, an AI-powered recruitment platform, and a two-module HR system for a healthcare provider.</p>
+          <p>Alongside my studies, I help other students find their footing in the cloud as a <strong>Cloud Developer with GDSC PLM</strong>, and I've led IT automation work that quietly saved teams hours every week.</p>
+        </div>
+        <div class="stats reveal" data-d="3">
+          <div class="stat glass"><div class="num grad-text">1.36</div><div class="lbl">GWA — Magna Cum Laude</div></div>
+          <div class="stat glass"><div class="num grad-text">3 in 3</div><div class="lbl">Apps shipped across Launchpad rounds</div></div>
+          <div class="stat glass"><div class="num grad-text">5</div><div class="lbl">Branches in a secure IPsec network</div></div>
+          <div class="stat glass"><div class="num grad-text">500+</div><div class="lbl">Employees supported by internal tools</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow reveal">Skills &amp; tooling</div>
+      <h2 class="section-title reveal" data-d="1">A toolkit that spans <span class="grad-text">cloud to canvas.</span></h2>
+      <p class="section-lead reveal" data-d="2">Grouped by where they live in a build — from the languages I reach for first to the platforms I ship on.</p>
+
+      <div class="lang-strip reveal" data-d="2">
+        <span class="lang-chip">Java</span><span class="lang-chip">Python</span><span class="lang-chip">TypeScript</span><span class="lang-chip">JavaScript</span><span class="lang-chip">SQL</span><span class="lang-chip">C++</span>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card glass tilt reveal" data-d="1">
+          <div class="skill-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>Frontend</h3>
+          <div class="skill-tags"><span>React</span><span>Next.js (App Router)</span><span>TypeScript</span><span>Tailwind CSS</span><span>shadcn/ui</span><span>SASS</span><span>Bootstrap</span><span>SWR</span><span>TanStack Query &amp; Table</span></div>
+        </article>
+        <article class="skill-card glass tilt reveal" data-d="2">
+          <div class="skill-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+          <h3>Backend</h3>
+          <div class="skill-tags"><span>Django</span><span>Zappa</span><span>Flask</span><span>Prisma</span><span>NextAuth.js</span><span>Resend</span><span>Web Push (VAPID)</span><span>OpenAI &amp; Groq</span></div>
+        </article>
+        <article class="skill-card glass tilt reveal" data-d="3">
+          <div class="skill-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Mobile</h3>
+          <div class="skill-tags"><span>Mobile-first responsive web</span><span>PWA</span><span>Web Push</span></div>
+          <p class="placeholder" style="margin-top:12px">Native mobile — placeholder for future work.</p>
+        </article>
+        <article class="skill-card glass tilt reveal" data-d="1">
+          <div class="skill-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+          <h3>Cloud</h3>
+          <div class="skill-tags"><span>AWS (S3 · RDS · Lambda)</span><span>API Gateway</span><span>CloudFront</span><span>WAF · Shield · KMS</span><span>Google Cloud Platform</span><span>Supabase</span><span>Firebase</span><span>Vercel</span><span>CI/CD (CodePipeline &amp; CodeBuild)</span></div>
+        </article>
+        <article class="skill-card glass tilt reveal" data-d="2">
+          <div class="skill-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <h3>Databases</h3>
+          <div class="skill-tags"><span>PostgreSQL</span><span>MongoDB</span><span>MySQL</span></div>
+        </article>
+        <article class="skill-card glass tilt reveal" data-d="3">
+          <div class="skill-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3>Dev Tools</h3>
+          <div class="skill-tags"><span>Git &amp; GitHub</span><span>VS Code</span><span>Figma</span><span>Cisco Packet Tracer</span><span>AppSheet</span><span>Google Apps Script</span><span>Google Workspace</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow reveal">Experience</div>
+      <h2 class="section-title reveal" data-d="1">Where I've been <span class="grad-text">building.</span></h2>
+      <p class="section-lead reveal" data-d="2">A short timeline of the teams and programs that shaped how I work.</p>
+
+      <div class="timeline">
+        <div class="tl-item reveal" data-d="1">
+          <div class="tl-node"></div>
+          <div class="tl-card glass tilt">
+            <div class="tl-head"><span class="tl-role">Launchpad Program — Full-Stack Developer</span><span class="tl-date">May 2026 – Jun 2026</span></div>
+            <div class="tl-org">White Cloak Technologies · Philippines</div>
+            <ul><li>Completed an intensive one-month program, shipping a full-stack web application in each of three consecutive build rounds under weekly deadlines.</li></ul>
+            <div class="rounds">
+              <div class="round">
+                <h4>Round 1 — Agapay Telehealth Platform</h4>
+                <p>A full-stack telehealth MVP for the Philippine healthcare system: patients book consultations with specialized doctors, review medical history, and access health resources.</p>
+                <div class="stack">Next.js 15 · React 19 · Tailwind CSS · PostgreSQL + Prisma · NextAuth.js v5</div>
+              </div>
+              <div class="round">
+                <h4>Round 2 — Hirejia Rebuild</h4>
+                <p>Rebuilt Hirejia, an AI-powered recruitment platform spanning automated CV screening and candidate communication.</p>
+                <div class="stack">Next.js 15+ · React 19 · Bootstrap 4 · SASS · MongoDB · Firebase Auth · SWR · TanStack Table · Web Push · OpenAI · Mailgun · Cloudflare R2</div>
+              </div>
+              <div class="round">
+                <h4>Round 3 — Jia HR Platform (two-module MVP)</h4>
+                <p>An employee-lifecycle HR platform for a healthcare provider: People Management (directory, org chart, onboarding/offboarding, role-based access) and Performance Management (pulse surveys, competency exams, evaluations), with server-side authorization and append-only audit logging.</p>
+                <div class="stack">Next.js 16 (RSC) · TypeScript · Supabase · Prisma · Tailwind + shadcn/ui · TanStack Query/Table · react-hook-form + Zod · Resend</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" data-d="2">
+          <div class="tl-node"></div>
+          <div class="tl-card glass tilt">
+            <div class="tl-head"><span class="tl-role">Cloud Developer Googler</span><span class="tl-date">Sep 2025 – Present</span></div>
+            <div class="tl-org">Google Developer Student Club (GDSC) PLM · Manila, PH</div>
+            <ul>
+              <li>Research and implement Google Cloud Platform solutions for student-led initiatives and technical projects.</li>
+              <li>Run technical workshops and Study Jams, helping peers understand cloud architecture, deployment, and infrastructure.</li>
+              <li>Support the Technology Operations committee by evaluating project feasibility for organization-wide initiatives.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" data-d="3">
+          <div class="tl-node"></div>
+          <div class="tl-card glass tilt">
+            <div class="tl-head"><span class="tl-role">IT Intern Lead</span><span class="tl-date">Jun 2025 – Jul 2025</span></div>
+            <div class="tl-org">Lay Bare Franchising Corporation · Mandaluyong, PH</div>
+            <ul>
+              <li>Engineered full-stack automation to modernize legacy IT processes, improving data integrity and operational efficiency.</li>
+              <li>Built low-code apps with AppSheet and Google Workspace, automating asset tracking for 100+ IT assets.</li>
+              <li>Automated recurring tasks with Google Apps Script, saving 5+ hours of manual effort each week.</li>
+              <li>Maintained internal portals and knowledge bases with Google Sites, supporting 500+ employees.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow reveal">Selected projects</div>
+      <h2 class="section-title reveal" data-d="1">Things I've <span class="grad-text">designed &amp; shipped.</span></h2>
+      <p class="section-lead reveal" data-d="2">A mix of program builds and academic projects — from AI-powered platforms to a compiler and a multi-site network.</p>
+
+      <div class="proj-grid">
+        <!-- Agapay -->
+        <article class="proj-card glass tilt reveal" data-d="1">
+          <div class="proj-mock" style="background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(236,72,153,.18))" aria-hidden="true">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="screen"><div class="line m"></div><div class="line"></div><div class="line s"></div></div></div>
+            <div class="glow-name">Agapay</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Launchpad · Round 1</div>
+            <h3>Agapay Telehealth Platform</h3>
+            <p class="desc">A full-stack telehealth MVP for the Philippine healthcare system — patients book consultations, meet specialized doctors, review medical history, and reach health resources in one portal.</p>
+            <div class="proj-meta">
+              <div class="row"><b>Challenge:</b> Delivering a secure, credential-based patient portal and a clean booking flow within a one-week build round.</div>
+              <div class="row"><b>Key win:</b> Shipped an end-to-end booking experience on a modern App Router stack.</div>
+            </div>
+            <div class="proj-stack"><span>Next.js 15</span><span>React 19</span><span>Tailwind CSS</span><span>PostgreSQL</span><span>Prisma</span><span>NextAuth.js v5</span></div>
+            <div class="proj-links">
+              <a class="proj-link" href="https://github.com/chaiz1230/agapay" target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+                GitHub
+              </a>
+              <a class="proj-link" href="https://agapay-gold.vercel.app/" target="_blank" rel="noopener">Live demo</a>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- Hirejia -->
+        <article class="proj-card glass tilt reveal" data-d="1">
+          <div class="proj-mock" style="background:linear-gradient(135deg,rgba(236,72,153,.22),rgba(249,168,212,.16))" aria-hidden="true">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="screen"><div class="line s"></div><div class="line m"></div><div class="line"></div></div></div>
+            <div class="glow-name">Hirejia</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Launchpad · Round 2</div>
+            <h3>Hirejia — AI Recruitment</h3>
+            <p class="desc">A rebuild of Hirejia, an AI-powered recruitment platform spanning automated CV screening and candidate communication, backed by LLM reasoning and push notifications.</p>
+            <div class="proj-meta">
+              <div class="row"><b>Challenge:</b> Re-architecting an existing platform while integrating AI screening and real-time candidate updates.</div>
+              <div class="row"><b>Key win:</b> Automated CV digitalization and screening wired into a notification-driven workflow.</div>
+            </div>
+            <div class="proj-stack"><span>Next.js 15+</span><span>MongoDB</span><span>Firebase Auth</span><span>SWR</span><span>OpenAI</span><span>Web Push</span><span>Cloudflare R2</span></div>
+            <div class="proj-links">
+              <a class="proj-link disabled" aria-disabled="true" href="#">GitHub — private (NDA)</a>
+              <a class="proj-link" href="https://chaiz1230-launchpad-jia.vercel.app/" target="_blank" rel="noopener">Live demo</a>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- Jia HR -->
+        <article class="proj-card glass tilt reveal" data-d="2">
+          <div class="proj-mock" style="background:linear-gradient(135deg,rgba(184,161,255,.25),rgba(168,85,247,.16))" aria-hidden="true">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="screen"><div class="line"></div><div class="line m"></div><div class="line s"></div></div></div>
+            <div class="glow-name">Jia HR</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Launchpad · Round 3</div>
+            <h3>Jia HR Platform</h3>
+            <p class="desc">A two-module MVP of an employee-lifecycle HR platform for a healthcare provider: People Management (directory, org chart, onboarding/offboarding, role-based access) and Performance Management (pulse surveys, competency exams, evaluations).</p>
+            <div class="proj-meta">
+              <div class="row"><b>Challenge:</b> Enforcing authorization and audit integrity entirely server-side across two connected modules.</div>
+              <div class="row"><b>Key win:</b> Append-only audit logging and role-based access built on a modern RSC architecture.</div>
+            </div>
+            <div class="proj-stack"><span>Next.js 16 (RSC)</span><span>TypeScript</span><span>Supabase</span><span>Prisma</span><span>shadcn/ui</span><span>Zod</span><span>Resend</span></div>
+            <div class="proj-links">
+              <a class="proj-link disabled" aria-disabled="true" href="#">GitHub — private (NDA)</a>
+              <a class="proj-link" href="https://jia-hr.vercel.app/" target="_blank" rel="noopener">Live demo</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kinetiq -->
+        <article class="proj-card glass tilt reveal" data-d="2">
+          <div class="proj-mock" style="background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(184,161,255,.16))" aria-hidden="true">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="screen"><div class="line m"></div><div class="line s"></div><div class="line"></div></div></div>
+            <div class="glow-name">Kinetiq</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Academic · May 2025</div>
+            <h3>Kinetiq Manufacturing ERP</h3>
+            <p class="desc">Core AWS infrastructure and serverless backend for a manufacturing ERP system, with a React shell for operations workflows and full CI/CD.</p>
+            <div class="proj-meta">
+              <div class="row"><b>Challenge:</b> Architecting secure, scalable cloud infrastructure across many AWS services with development access to RDS.</div>
+              <div class="row"><b>Key win:</b> Serverless APIs (Django + Zappa) and CI/CD pipelines from CodePipeline to CodeBuild.</div>
+            </div>
+            <div class="proj-stack"><span>AWS S3 · RDS · Lambda</span><span>API Gateway</span><span>CloudFront</span><span>Django</span><span>Zappa</span><span>React</span></div>
+            <div class="proj-links">
+              <a class="proj-link" href="https://github.com/Kinetiq-PLM" target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+                GitHub
+              </a>
+              <a class="proj-link disabled" aria-disabled="true" href="#">Academic project</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CStar -->
+        <article class="proj-card glass tilt reveal" data-d="1">
+          <div class="proj-mock" style="background:linear-gradient(135deg,rgba(184,161,255,.22),rgba(236,72,153,.14))" aria-hidden="true">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="screen"><div class="line"></div><div class="line s"></div><div class="line m"></div></div></div>
+            <div class="glow-name">C★</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Academic · May 2025</div>
+            <h3>CStar Compiler</h3>
+            <p class="desc">A modern multi-paradigm programming language inspired by C and C++ with cleaner syntax — built through the full compiler pipeline from lexing to transpilation.</p>
+            <div class="proj-meta">
+              <div class="row"><b>Challenge:</b> Implementing lexical, syntax, and semantic analysis using formal language and automata principles.</div>
+              <div class="row"><b>Key win:</b> Blended Python- and Java-inspired features while preserving C/C++ systems-level concepts.</div>
+            </div>
+            <div class="proj-stack"><span>Flask</span><span>Python</span><span>React</span><span>JavaScript</span><span>Websockets</span><span>GCP</span></div>
+            <div class="proj-links">
+              <a class="proj-link" href="https://github.com/matchi-1/CStarCompiler" target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.8c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z"/></svg>
+                GitHub
+              </a>
+              <a class="proj-link disabled" aria-disabled="true" href="#">Academic project</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Network -->
+        <article class="proj-card glass tilt reveal" data-d="2">
+          <div class="proj-mock" style="background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(184,161,255,.2))" aria-hidden="true">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="screen"><div class="line s"></div><div class="line"></div><div class="line m"></div></div></div>
+            <div class="glow-name">Multi-Site</div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Academic · Dec 2025</div>
+            <h3>Multi-Site Network Design</h3>
+            <p class="desc">A secure multi-site network topology in Cisco Packet Tracer connecting five branches (Makati, Manila, Puerto Galera, Laguna, Cebu) with Makati as the central hub.</p>
+            <div class="proj-meta">
+              <div class="row"><b>Challenge:</b> Establishing site-to-site IPsec VPN tunnels and dynamic routing across five locations.</div>
+              <div class="row"><b>Key win:</b> Deployed core network services — DHCP, DNS, SMTP, and Telnet/SSH — over an encrypted backbone.</div>
+            </div>
+            <div class="proj-stack"><span>Cisco Packet Tracer</span><span>IPsec VPN</span><span>OSPF</span><span>EIGRP</span><span>ACLs</span></div>
+            <div class="proj-links">
+              <a class="proj-link disabled" aria-disabled="true" href="#">Academic project</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section id="education">
+    <div class="wrap">
+      <div class="eyebrow reveal">Education &amp; certifications</div>
+      <h2 class="section-title reveal" data-d="1">Foundations &amp; <span class="grad-text">credentials.</span></h2>
+      <div class="edu-cert">
+        <div class="edu-card glass reveal" data-d="2">
+          <div class="degree">BS Computer Science</div>
+          <div class="school">Pamantasan ng Lungsod ng Maynila</div>
+          <div class="sub">College of Information Systems &amp; Technology Management (CISTM) · Manila, PH · Sep 2022 – Aug 2026</div>
+          <div class="honor"><span class="star">✦</span> Magna Cum Laude · GWA 1.36148</div>
+          <div class="course-label">Relevant coursework</div>
+          <div class="courses">
+            <span>Object-Oriented Programming</span><span>Data Structures &amp; Algorithms</span><span>Algorithms &amp; Complexity</span><span>Information Management</span><span>Information Assurance &amp; Security</span><span>Programming Languages</span><span>Software Engineering</span><span>Intelligent Systems</span><span>App Dev &amp; Emerging Tech</span><span>Computational Science</span><span>Networks &amp; Communication</span>
+          </div>
+        </div>
+        <div class="cert-col">
+          <div class="cert-card glass reveal" data-d="3">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <h4>Launchpad Program — Completion</h4>
+            <p>White Cloak Technologies · 2026</p>
+          </div>
+          <div class="cert-card glass reveal" data-d="4">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <h4>Introduction to Packet Tracer</h4>
+            <p>Cisco Networking Academy · 17 Aug 2025</p>
+          </div>
+          <div class="cert-card glass reveal" data-d="5">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <h4>Networking Basics</h4>
+            <p>Cisco Networking Academy · 24 Aug 2025</p>
+          </div>
+          <div class="cert-card glass reveal" data-d="6">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <h4>Network Technician Career Path</h4>
+            <p>Cisco Networking Academy · 09 Sep 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-card glass reveal">
+        <div class="eyebrow" style="justify-content:center">Contact</div>
+        <h2>Let's build something <span class="grad-text">lovely together.</span></h2>
+        <p>I'm open to software engineering roles and collaborations. The fastest way to reach me is email — I'd love to hear what you're working on.</p>
+        <div class="contact-btns">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chaizjehan@gmail.com" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email me
+          </a>
+          <a href="Levita_Jehan_CV_July2026.pdf" class="btn btn-ghost magnetic" download>Download resume</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:chaizjehan@gmail.com">chaizjehan@gmail.com</a>
+          <a href="tel:+639999608554">(+63) 999 960 8554</a>
+          <a href="https://www.linkedin.com/in/jehan-levita-2b3569306/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/chaiz1230" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Designed &amp; built by <span class="grad-text">Jehan Chaiz P. Levita</span> · Manila, Philippines</p>
+  </footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav scroll state
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 30) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+  }, {passive:true});
+
+  // Mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', function(){
+    var open = navlinks.classList.toggle('open');
+    menuBtn.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navlinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ navlinks.classList.remove('open'); menuBtn.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); });
+  });
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  if(reduce) return; // stop here for reduced motion
+
+  // Sparkles in hero
+  var hero = document.getElementById('top');
+  for(var i=0;i<26;i++){
+    var s = document.createElement('span');
+    s.className = 'sparkle';
+    var size = Math.random()*2.5+1;
+    s.style.width = size+'px'; s.style.height = size+'px';
+    s.style.left = Math.random()*100+'%';
+    s.style.top = Math.random()*100+'%';
+    s.style.setProperty('--dur',(Math.random()*4+3)+'s');
+    s.style.setProperty('--delay',(Math.random()*5)+'s');
+    hero.appendChild(s);
+  }
+
+  // Cursor glow with pink<->purple shift
+  var glow = document.getElementById('cursor-glow');
+  var gx=window.innerWidth/2, gy=window.innerHeight/2, cx=gx, cy=gy;
+  var hue=0;
+  window.addEventListener('mousemove', function(e){ gx=e.clientX; gy=e.clientY; glow.style.opacity=1; });
+  window.addEventListener('mouseleave', function(){ glow.style.opacity=0; });
+  (function loop(){
+    cx += (gx-cx)*0.12; cy += (gy-cy)*0.12;
+    hue += 0.5;
+    var t = (Math.sin(hue*Math.PI/180)+1)/2; // 0..1
+    var r = Math.round(236 + (168-236)*t);
+    var g = Math.round(72 + (85-72)*t);
+    var b = Math.round(153 + (247-153)*t);
+    glow.style.background = 'radial-gradient(circle, rgba('+r+','+g+','+b+',.16), rgba('+r+','+g+','+b+',.08) 40%, transparent 70%)';
+    glow.style.transform = 'translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';
+    requestAnimationFrame(loop);
+  })();
+
+  // Magnetic buttons
+  document.querySelectorAll('.magnetic').forEach(function(btn){
+    btn.addEventListener('mousemove', function(e){
+      var r = btn.getBoundingClientRect();
+      var mx = e.clientX - r.left - r.width/2;
+      var my = e.clientY - r.top - r.height/2;
+      btn.style.transform = 'translate('+(mx*0.25)+'px,'+(my*0.35)+'px)';
+    });
+    btn.addEventListener('mouseleave', function(){ btn.style.transform=''; });
+  });
+
+  // Tilt on cards
+  document.querySelectorAll('.tilt').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left)/r.width - 0.5;
+      var py = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = 'perspective(900px) rotateX('+(-py*4)+'deg) rotateY('+(px*4)+'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', function(){ card.style.transform=''; });
+  });
+})();
+</script>
+</body>
+</html>
